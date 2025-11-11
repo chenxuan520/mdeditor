@@ -385,17 +385,24 @@
 
 /* 链接黑暗模式 */
 .dark-mode a {
-  color: var(--theme-primary) !important;
+  color: #8ab4f8 !important; /* 调整为更亮的蓝色 */
 }
 
 .dark-mode a:hover {
-  color: var(--theme-primary-hover) !important;
+  color: #a6c8ff !important; /* 调整悬停颜色为更亮的蓝色 */
+}
+
+/* 确保黑暗模式下加粗文字更亮 */
+.dark-mode strong,
+.dark-mode b {
+  color: #ffffff !important; /* 纯白色，确保可见性 */
+  font-weight: bold !important; /* 确保加粗 */
 }
 
 /* 代码块高亮适配 */
 .dark-mode pre {
-  background: #3a3a3a !important;
-  border: 1px solid #404040 !important;
+  background: var(--theme-bg-tertiary) !important;
+  border: 1px solid var(--theme-border-light) !important;
 }
 
 .dark-mode code {
@@ -505,18 +512,32 @@
 .dark-mode .header-btn {
   background: var(--theme-bg-tertiary);
   border: 1px solid var(--theme-border-light);
-  color: var(--theme-text-primary);
+  color: white !important; /* 确保黑暗模式下按钮文字为白色 */
+  box-shadow: none !important; /* 移除默认光圈 */
 }
 
 .dark-mode .header-btn:hover {
   background: var(--theme-primary-light);
   border-color: var(--theme-primary);
+  box-shadow: none !important; /* 移除悬停光圈 */
 }
 
 .dark-mode .header-btn.active {
   background: var(--theme-primary);
-  color: white;
-  border-color: var(--theme-primary);
+  color: white !important; /* 确保黑暗模式下激活按钮文字为白色 */
+  box-shadow: none !important; /* 移除激活状态光圈 */
+}
+
+.dark-mode .header-btn.active:hover {
+  box-shadow: none !important; /* 移除激活悬停状态光圈 */
+}
+
+.dark-mode .header-btn:focus-visible {
+  box-shadow: none !important; /* 移除焦点光圈 */
+}
+
+.dark-mode .header-btn svg {
+  color: white !important; /* 确保黑暗模式下按钮图标为白色 */
 }
 
 /* 编辑器黑暗模式 */
@@ -720,4 +741,102 @@
 
 .dark-mode li::marker {
   color: var(--theme-text-secondary);
+}
+
+/* Mermaid 图表文字颜色在黑暗模式下保持黑色 */
+.dark-mode .mermaid * {
+  fill: #000000 !important;
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* 针对所有 SVG 文本元素，确保颜色为黑色 */
+.dark-mode .mermaid text,
+.dark-mode .mermaid tspan,
+.dark-mode .mermaid .nodeLabel,
+.dark-mode .mermaid .edgeLabel,
+.dark-mode .mermaid .cluster-label text,
+.dark-mode .mermaid .title-text,
+.dark-mode .mermaid .actor,
+.dark-mode .mermaid .messageText,
+.dark-mode .mermaid .noteText,
+.dark-mode .mermaid .loopText,
+.dark-mode .mermaid .statementText,
+.dark-mode .mermaid .sectionTitle,
+.dark-mode .mermaid .label,
+.dark-mode .mermaid .legend text,
+.dark-mode .mermaid .axis text,
+.dark-mode .mermaid .tick text,
+.dark-mode .mermaid .flowchart-label text,
+.dark-mode .mermaid .stateLabel text,
+.dark-mode .mermaid .taskLabel text,
+.dark-mode .mermaid .classLabel text,
+.dark-mode .mermaid .relationLabel text,
+.dark-mode .mermaid .pieTitleText,
+.dark-mode .mermaid .pieLabelText,
+.dark-mode .mermaid .pieValueText,
+.dark-mode .mermaid .erLabel text,
+.dark-mode .mermaid .erTitle text,
+.dark-mode .mermaid .erAttribute text,
+.dark-mode .mermaid .erCardinality text,
+.dark-mode .mermaid .erKey text,
+.dark-mode .mermaid .erEntity text,
+.dark-mode .mermaid .erRelationship text,
+.dark-mode .mermaid .gantt-label text,
+.dark-mode .mermaid .gantt-title text,
+.dark-mode .mermaid .gantt-section text,
+.dark-mode .mermaid .gantt-task text,
+.dark-mode .mermaid .gantt-milestone text,
+.dark-mode .mermaid .gantt-today text,
+.dark-mode .mermaid .gantt-axis text,
+.dark-mode .mermaid .gantt-tick text,
+.dark-mode .mermaid .journey-label text,
+/* 针对节点内部文本的更具体覆盖 */
+.dark-mode .mermaid .node rect + text,
+.dark-mode .mermaid .node circle + text,
+.dark-mode .mermaid .node ellipse + text,
+.dark-mode .mermaid .node polygon + text,
+.dark-mode .mermaid .node path + text,
+/* 针对所有 SVG 文本元素，确保颜色为黑色 */
+.dark-mode .mermaid g.node text,
+.dark-mode .mermaid g.edgeLabel text,
+.dark-mode .mermaid g.cluster-label text,
+.dark-mode .mermaid g.title-text text,
+.dark-mode .mermaid g.actor text,
+.dark-mode .mermaid g.messageText text,
+.dark-mode .mermaid g.noteText text,
+.dark-mode .mermaid g.loopText text,
+.dark-mode .mermaid g.statementText text,
+.dark-mode .mermaid g.sectionTitle text,
+.dark-mode .mermaid g.label text,
+.dark-mode .mermaid g.legend text,
+.dark-mode .mermaid g.axis text,
+.dark-mode .mermaid g.tick text,
+.dark-mode .mermaid g.flowchart-label text,
+.dark-mode .mermaid g.stateLabel text,
+.dark-mode .mermaid g.taskLabel text,
+.dark-mode .mermaid g.classLabel text,
+.dark-mode .mermaid g.relationLabel text,
+.dark-mode .mermaid g.pieTitleText text,
+.dark-mode .mermaid g.pieLabelText text,
+.dark-mode .mermaid g.pieValueText text,
+.dark-mode .mermaid g.erLabel text,
+.dark-mode .mermaid g.erTitle text,
+.dark-mode .mermaid g.erAttribute text,
+.dark-mode .mermaid g.erCardinality text,
+.dark-mode .mermaid g.erKey text,
+.dark-mode .mermaid g.erEntity text,
+.dark-mode .mermaid g.erRelationship text,
+.dark-mode .mermaid g.gantt-label text,
+.dark-mode .mermaid g.gantt-title text,
+.dark-mode .mermaid g.gantt-section text,
+.dark-mode .mermaid g.gantt-task text,
+.dark-mode .mermaid g.gantt-milestone text,
+.dark-mode .mermaid g.gantt-today text,
+.dark-mode .mermaid g.gantt-axis text,
+.dark-mode .mermaid g.gantt-tick text,
+.dark-mode .mermaid g.journey-label text {
+  fill: #000000 !important;
+  color: #000000 !important;
+  stroke: #000000 !important;
 }

@@ -34,13 +34,13 @@
 /* Tab 标签页按钮组容器 - 参考图片风格 */
 .mode-buttons {
   display: flex;
-  background: #e8e8eb;
+  background: var(--theme-bg-tertiary);
   border-radius: 12px;
   padding: 4px;
   box-shadow:
     /* 容器内凹效果 */
-    inset 4px 4px 8px rgba(163, 177, 198, 0.6),
-    inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+    inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.05);
   position: relative;
   gap: 0;
 }
@@ -57,7 +57,7 @@
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;
-  color: #9ca3af;
+  color: var(--theme-text-secondary);
   transition: all 0.2s ease;
   white-space: nowrap;
   position: relative;
@@ -84,32 +84,32 @@
 
 .mode-btn:hover:not(.active) {
   color: var(--theme-primary);
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--theme-bg-hover); /* 或者 rgba(var(--theme-text-primary-rgb), 0.1); */
 }
 
 /* 激活状态 - 凸起的标签页 */
 .mode-btn.active {
-  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  background: var(--theme-bg-primary); /* 或者一个适合黑暗模式的渐变 */
   color: var(--theme-primary);
   font-weight: 600;
   /* 凸起效果 - 从容器中突出 */
   box-shadow:
-    3px 3px 6px rgba(163, 177, 198, 0.5),
-    -3px -3px 6px rgba(255, 255, 255, 0.9),
+    3px 3px 6px rgba(0, 0, 0, 0.3),
+    -3px -3px 6px rgba(255, 255, 255, 0.05),
     /* 内部高光 */
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
   transform: translateY(-1px);
 }
 
 .mode-btn.active:hover {
   color: var(--theme-primary-hover);
-  background: linear-gradient(145deg, #ffffff, #fafbfc);
+  background: var(--theme-bg-primary-hover); /* 或者一个适合黑暗模式的渐变 */
   box-shadow:
-    4px 4px 8px rgba(163, 177, 198, 0.6),
-    -4px -4px 8px rgba(255, 255, 255, 0.95),
-    inset 0 1px 0 rgba(255, 255, 255, 0.98),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    4px 4px 8px rgba(0, 0, 0, 0.4),
+    -4px -4px 8px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 /* Tab 图标样式 */
@@ -141,8 +141,8 @@
   right: 2px;
   height: 50%;
   background: linear-gradient(180deg,
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
     transparent 100%);
   border-radius: 6px 6px 12px 12px;
   pointer-events: none;
@@ -158,8 +158,8 @@
   height: 60%;
   background: linear-gradient(180deg,
     transparent 0%,
-    rgba(163, 177, 198, 0.3) 20%,
-    rgba(163, 177, 198, 0.3) 80%,
+    var(--theme-border-medium) 20%,
+    var(--theme-border-medium) 80%,
     transparent 100%);
 }
 

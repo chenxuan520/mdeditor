@@ -233,10 +233,11 @@ export function useThemeManager() {
    * 切换黑暗模式
    */
   const toggleDarkMode = () => {
-    const modes = ['light', 'dark', 'auto']
-    const currentIndex = modes.indexOf(themeState.isDarkMode)
-    const nextIndex = (currentIndex + 1) % modes.length
-    setDarkMode(modes[nextIndex])
+    if (themeState.isDarkMode === 'light' || (themeState.isDarkMode === 'auto' && !isDarkModeActive.value)) {
+      setDarkMode('dark')
+    } else {
+      setDarkMode('light')
+    }
   }
 
   /**
