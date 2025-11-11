@@ -60,6 +60,8 @@ export default {
   transition: var(--transition-all-normal);
   /* 移除 margin，让父容器的 gap 来控制间距 */
   box-shadow: var(--shadow-neumorphism-small);
+  /* 增强明亮模式下的可见性 */
+  filter: brightness(1.4) contrast(1.3) saturate(1.2);
 }
 
 .toolbar-btn:hover {
@@ -86,6 +88,8 @@ export default {
     box-shadow:
       5px 5px 10px rgba(0, 0, 0, 0.3),
       -5px -5px 10px rgba(255, 255, 255, 0.05);
+    /* 增强暗模式下的可见性 */
+    filter: brightness(1.3) contrast(1.2);
   }
 
   .toolbar-btn:hover {
@@ -93,6 +97,7 @@ export default {
     box-shadow:
       inset 3px 3px 6px rgba(0, 0, 0, 0.4),
       inset -3px -3px 6px rgba(255, 255, 255, 0.08);
+    filter: brightness(1.4) contrast(1.3);
   }
 
   .toolbar-btn:active {
@@ -100,6 +105,7 @@ export default {
     box-shadow:
       inset 4px 4px 8px rgba(0, 0, 0, 0.5),
       inset -4px -4px 8px rgba(255, 255, 255, 0.1);
+    filter: brightness(1.2) contrast(1.1);
   }
 }
 </style>

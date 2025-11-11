@@ -1,0 +1,723 @@
+/**
+ * 黑暗模式样式 - 整个界面变色
+ */
+
+/* 整个应用的黑暗模式基础样式 */
+.dark-mode {
+  background-color: #1a1a1a !important;
+  color: #e6e6e6 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 强制所有主要背景色变黑 */
+.dark-mode #app {
+  background-color: #1a1a1a !important;
+  color: #e6e6e6 !important;
+  min-height: 100vh;
+}
+
+/* 覆盖所有可能的背景元素 */
+.dark-mode body {
+  background-color: #1a1a1a !important;
+  color: #e6e6e6 !important;
+}
+
+.dark-mode html {
+  background-color: #1a1a1a !important;
+}
+
+/* 主要布局区域 */
+.dark-mode .app-container,
+.dark-mode .main-container,
+.dark-mode .editor-container,
+.dark-mode .preview-container {
+  background-color: #1a1a1a !important;
+  color: #e6e6e6 !important;
+}
+
+/* 应用头部黑暗模式 */
+.dark-mode .app-header {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%) !important;
+  border-bottom: 1px solid #404040 !important;
+}
+
+/* 暗模式下的Logo样式 - 使用更具体的选择器 */
+.dark-mode .app-header .brand .logo .logo-img {
+  filter: brightness(1.6) contrast(1.3) invert(0.8) saturate(1.2) !important;
+  mix-blend-mode: screen !important;
+}
+
+.dark-mode .app-header .brand .logo .logo-placeholder {
+  color: var(--theme-primary) !important;
+  filter: brightness(1.4) saturate(1.2) !important;
+  text-shadow: 0 0 8px rgba(var(--theme-primary-rgb), 0.4) !important;
+}
+
+.dark-mode .header-btn {
+  background: #4a4a4a !important;
+  border: 1px solid #555555 !important;
+  color: #ffffff !important;
+}
+
+.dark-mode .header-btn:hover {
+  background: #555555 !important;
+  border-color: var(--theme-primary) !important;
+}
+
+.dark-mode .header-btn.active {
+  background: var(--theme-primary) !important;
+  color: white !important;
+  border-color: var(--theme-primary) !important;
+}
+
+/* 下拉菜单黑暗模式 - 修复白光 */
+.dark-mode .dropdown-menu {
+  background: #3a3a3a !important;
+  border: 1px solid #555555 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-mode .dropdown-item {
+  color: #ffffff !important;
+}
+
+.dark-mode .dropdown-item:hover:not(.dropdown-item-disabled) {
+  background: #4a4a4a !important;
+}
+
+.dark-mode .dropdown-item:active {
+  background: #2a2a2a !important;
+}
+
+.dark-mode .dropdown-item-disabled {
+  color: #888888 !important;
+}
+
+/* 主内容区域黑暗模式 */
+.dark-mode .app-main {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+/* 编辑器黑暗模式 */
+.dark-mode .markdown-editor {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  border-color: #404040 !important;
+}
+
+/* 编辑器工具栏黑暗模式 */
+.dark-mode .editor-toolbar {
+  background-color: #2d2d2d !important;
+  border-bottom: 1px solid #404040 !important;
+}
+
+.dark-mode .toolbar-divider {
+  background-color: #404040 !important;
+}
+
+/* 工具栏按钮黑暗模式 - 修复白光效果 */
+.dark-mode .toolbar-btn {
+  background: #3a3a3a !important;
+  color: var(--theme-primary) !important;
+  box-shadow: 
+    3px 3px 6px rgba(0, 0, 0, 0.3),
+    -3px -3px 6px rgba(255, 255, 255, 0.05) !important;
+  /* 增强按钮内容可见性 */
+  filter: brightness(1.3) contrast(1.2) !important;
+}
+
+.dark-mode .toolbar-btn:hover {
+  background: #404040 !important;
+  color: var(--theme-primary-hover) !important;
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.05) !important;
+  filter: brightness(1.4) contrast(1.3) !important;
+}
+
+.dark-mode .toolbar-btn:active {
+  background: #353535 !important;
+  color: var(--theme-primary-dark) !important;
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.4),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.05) !important;
+  filter: brightness(1.2) contrast(1.1) !important;
+}
+
+.dark-mode .toolbar-btn:disabled {
+  background: #2a2a2a !important;
+  color: #666666 !important;
+  box-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.2),
+    -2px -2px 4px rgba(255, 255, 255, 0.03) !important;
+  filter: brightness(0.9) contrast(0.8) !important;
+}
+
+/* CodeMirror 编辑器黑暗模式 */
+.dark-mode .CodeMirror {
+  background: #1a1a1a !important;
+  color: #e6e6e6 !important;
+}
+
+.dark-mode .CodeMirror-cursor {
+  border-left: 1px solid #e6e6e6 !important;
+}
+
+.dark-mode .CodeMirror-selected {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* CodeMirror 行号列黑暗模式 */
+.dark-mode .cm-gutters {
+  background-color: #2d2d2d !important;
+  border-right: 1px solid #404040 !important;
+  color: #888888 !important;
+}
+
+.dark-mode .cm-gutter {
+  background-color: #2d2d2d !important;
+}
+
+.dark-mode .cm-lineNumbers {
+  color: #666666 !important;
+}
+
+.dark-mode .cm-activeLineGutter {
+  background-color: #353535 !important;
+  color: #e6e6e6 !important;
+}
+
+/* CodeMirror 内容区域 */
+.dark-mode .cm-content {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.dark-mode .cm-line {
+  color: #ffffff !important;
+}
+
+/* 暗模式下编辑器标题增强 */
+.dark-mode .cm-header-1 { color: var(--theme-primary) !important; filter: brightness(1.4) !important; }
+.dark-mode .cm-header-2 { color: var(--theme-primary-dark) !important; filter: brightness(1.3) !important; }
+.dark-mode .cm-header-3 { color: #ffffff !important; filter: brightness(1.2) !important; }
+.dark-mode .cm-header-4 { color: #e6e6e6 !important; filter: brightness(1.1) !important; }
+.dark-mode .cm-header-5 { color: #cccccc !important; filter: brightness(1.1) !important; }
+.dark-mode .cm-header-6 { color: #b3b3b3 !important; filter: brightness(1.1) !important; }
+
+.dark-mode .cm-activeLine {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* 预览区域黑暗模式 */
+.dark-mode .preview-pane {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  border-color: #404040 !important;
+}
+
+.dark-mode .preview-content {
+  background: #1a1a1a !important;
+}
+
+/* 设置面板黑暗模式 */
+.dark-mode .settings-panel {
+  background: #2d2d2d !important;
+  color: #ffffff !important;
+  border: 1px solid #404040 !important;
+}
+
+.dark-mode .settings-header {
+  background: #3a3a3a !important;
+  border-bottom: 1px solid #404040 !important;
+}
+
+.dark-mode .settings-section {
+  border-bottom: 1px solid #404040 !important;
+}
+
+.dark-mode .settings-footer {
+  background: #3a3a3a !important;
+  border-top: 1px solid #404040 !important;
+}
+
+/* 下拉菜单黑暗模式 */
+.dark-mode .dropdown-menu {
+  background: #2d2d2d !important;
+  border: 1px solid #404040 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-mode .dropdown-item {
+  color: #e6e6e6 !important;
+}
+
+.dark-mode .dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 工具栏黑暗模式 */
+.dark-mode .toolbar {
+  background: #2d2d2d !important;
+  border-bottom: 1px solid #404040 !important;
+}
+
+.dark-mode .toolbar-btn {
+  background: #3a3a3a !important;
+  border: 1px solid #404040 !important;
+  color: #e6e6e6 !important;
+}
+
+.dark-mode .toolbar-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: var(--theme-primary) !important;
+}
+
+/* 面板标题栏黑暗模式 */
+.dark-mode .panel-header {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%) !important;
+  border-bottom: 1px solid #404040 !important;
+}
+
+.dark-mode .panel-header h3 {
+  color: #ffffff !important;
+}
+
+.dark-mode .panel-header h3 svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+.dark-mode .panel-header h3::before {
+  background: var(--theme-primary) !important;
+  box-shadow: 0 0 8px var(--theme-primary) !important;
+}
+
+/* 面板操作按钮黑暗模式 */
+.dark-mode .panel-actions .btn-small {
+  background: #4a4a4a !important;
+  border: 1px solid #555555 !important;
+  color: #ffffff !important;
+}
+
+.dark-mode .panel-actions .btn-small:hover {
+  background: #555555 !important;
+  border-color: var(--theme-primary) !important;
+}
+
+/* 切换开关黑暗模式 */
+.dark-mode .toggle-label {
+  color: #ffffff !important;
+}
+
+.dark-mode .toggle-slider {
+  background: #404040 !important;
+}
+
+.dark-mode .toggle-slider::before {
+  background: #ffffff !important;
+}
+
+.dark-mode .toggle-checkbox:checked + .toggle-slider {
+  background: var(--theme-primary) !important;
+}
+
+/* 应用底部黑暗模式 */
+.dark-mode .app-footer {
+  background: #2d2d2d !important;
+  border-top: 1px solid #404040 !important;
+  color: #e6e6e6 !important;
+}
+
+/* 滚动条黑暗模式 */
+.dark-mode ::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: #2d2d2d !important;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: #555555 !important;
+  border-radius: 4px !important;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-primary) !important;
+}
+
+/* 输入框黑暗模式 */
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  background: #3a3a3a !important;
+  border: 1px solid #404040 !important;
+  color: #e6e6e6 !important;
+}
+
+.dark-mode input:focus,
+.dark-mode select:focus,
+.dark-mode textarea:focus {
+  border-color: var(--theme-primary) !important;
+  outline: none !important;
+}
+
+/* 按钮黑暗模式 */
+.dark-mode .btn {
+  background: #3a3a3a !important;
+  border: 1px solid #404040 !important;
+  color: #e6e6e6 !important;
+}
+
+.dark-mode .btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: var(--theme-primary) !important;
+}
+
+.dark-mode .btn-primary {
+  background: var(--theme-primary) !important;
+  color: white !important;
+  border-color: var(--theme-primary) !important;
+}
+
+/* 链接黑暗模式 */
+.dark-mode a {
+  color: var(--theme-primary) !important;
+}
+
+.dark-mode a:hover {
+  color: var(--theme-primary-hover) !important;
+}
+
+/* 代码块高亮适配 */
+.dark-mode pre {
+  background: #3a3a3a !important;
+  border: 1px solid #404040 !important;
+}
+
+.dark-mode code {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f8f2 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* 表格黑暗模式 */
+.dark-mode table {
+  border-color: #404040 !important;
+}
+
+.dark-mode th {
+  background: #2d2d2d !important;
+  border-color: #404040 !important;
+  color: #e6e6e6 !important;
+}
+
+.dark-mode td {
+  border-color: #404040 !important;
+  color: #e6e6e6 !important;
+}
+
+.dark-mode tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* 引用块黑暗模式 */
+.dark-mode blockquote {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-left-color: var(--theme-primary) !important;
+  color: #b3b3b3 !important;
+}
+
+/* 分割线黑暗模式 */
+.dark-mode hr {
+  border-color: #404040 !important;
+}
+
+/* 列表黑暗模式 */
+.dark-mode ul,
+.dark-mode ol {
+  color: #e6e6e6 !important;
+}
+
+.dark-mode li::marker {
+  color: #b3b3b3 !important;
+}
+
+/* 通知消息黑暗模式 */
+.dark-mode .notification {
+  background: #3a3a3a !important;
+  color: #e6e6e6 !important;
+  border: 1px solid #404040 !important;
+}
+
+.dark-mode .notification.success {
+  border-color: #22c55e !important;
+}
+
+.dark-mode .notification.error {
+  border-color: #ef4444 !important;
+}
+
+.dark-mode .notification.warning {
+  border-color: #f59e0b !important;
+}
+
+/* 通用元素黑暗模式 */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+  color: #ffffff !important;
+  filter: brightness(1.2) !important;
+}
+
+/* 预览区域标题增强 - 使用更具体的选择器 */
+.dark-mode .preview-pane .preview-rendered h1,
+.dark-mode .preview-pane .preview-rendered h2,
+.dark-mode .preview-pane .preview-rendered h3,
+.dark-mode .preview-pane .preview-rendered h4,
+.dark-mode .preview-pane .preview-rendered h5,
+.dark-mode .preview-pane .preview-rendered h6 {
+  color: #ffffff !important;
+  filter: brightness(1.4) contrast(1.2) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+  font-weight: 600 !important;
+}
+
+.dark-mode p {
+  color: #e6e6e6 !important;
+}
+
+.dark-mode span {
+  color: #e6e6e6 !important;
+}
+
+/* 确保所有div都有正确的颜色 */
+.dark-mode div {
+  color: #e6e6e6;
+}
+
+.dark-mode .header-btn {
+  background: var(--theme-bg-tertiary);
+  border: 1px solid var(--theme-border-light);
+  color: var(--theme-text-primary);
+}
+
+.dark-mode .header-btn:hover {
+  background: var(--theme-primary-light);
+  border-color: var(--theme-primary);
+}
+
+.dark-mode .header-btn.active {
+  background: var(--theme-primary);
+  color: white;
+  border-color: var(--theme-primary);
+}
+
+/* 编辑器黑暗模式 */
+.dark-mode .markdown-editor {
+  background: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+  border-color: var(--theme-border-light);
+}
+
+.dark-mode .CodeMirror {
+  background: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+}
+
+.dark-mode .CodeMirror-cursor {
+  border-left: 1px solid var(--theme-text-primary);
+}
+
+.dark-mode .CodeMirror-selected {
+  background: var(--theme-primary-light);
+}
+
+/* 预览区域黑暗模式 */
+.dark-mode .preview-pane {
+  background: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+  border-color: var(--theme-border-light);
+}
+
+.dark-mode .preview-content {
+  background: var(--theme-bg-primary);
+}
+
+/* 设置面板黑暗模式 */
+.dark-mode .settings-panel {
+  background: var(--theme-bg-secondary);
+  color: var(--theme-text-primary);
+  border: 1px solid var(--theme-border-light);
+}
+
+.dark-mode .settings-header {
+  background: var(--theme-bg-tertiary);
+  border-bottom: 1px solid var(--theme-border-light);
+}
+
+.dark-mode .settings-section {
+  border-bottom: 1px solid var(--theme-border-light);
+}
+
+.dark-mode .settings-footer {
+  background: var(--theme-bg-tertiary);
+  border-top: 1px solid var(--theme-border-light);
+}
+
+/* 下拉菜单黑暗模式 */
+.dark-mode .dropdown-menu {
+  background: var(--theme-bg-secondary);
+  border: 1px solid var(--theme-border-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .dropdown-item {
+  color: var(--theme-text-primary);
+}
+
+.dark-mode .dropdown-item:hover {
+  background: var(--theme-primary-light);
+}
+
+/* 工具栏黑暗模式 */
+.dark-mode .toolbar {
+  background: var(--theme-bg-secondary);
+  border-bottom: 1px solid var(--theme-border-light);
+}
+
+/* 工具栏按钮黑暗模式 - 使用更具体的选择器确保优先级 */
+.dark-mode .editor-toolbar .toolbar-btn {
+  background: var(--theme-bg-tertiary) !important;
+  border: 1px solid var(--theme-border-light) !important;
+  color: var(--theme-text-primary) !important;
+  filter: brightness(1.3) contrast(1.2) !important;
+}
+
+.dark-mode .editor-toolbar .toolbar-btn:hover {
+  background: var(--theme-primary-light) !important;
+  border-color: var(--theme-primary) !important;
+  filter: brightness(1.4) contrast(1.3) !important;
+}
+
+/* 滚动条黑暗模式 */
+.dark-mode ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: var(--theme-bg-secondary);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: var(--theme-border-medium);
+  border-radius: 4px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-primary);
+}
+
+/* 输入框黑暗模式 */
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  background: var(--theme-bg-tertiary);
+  border: 1px solid var(--theme-border-light);
+  color: var(--theme-text-primary);
+}
+
+.dark-mode input:focus,
+.dark-mode select:focus,
+.dark-mode textarea:focus {
+  border-color: var(--theme-primary);
+  outline: none;
+}
+
+/* 按钮黑暗模式 */
+.dark-mode .btn {
+  background: var(--theme-bg-tertiary);
+  border: 1px solid var(--theme-border-light);
+  color: var(--theme-text-primary);
+}
+
+.dark-mode .btn:hover {
+  background: var(--theme-primary-light);
+  border-color: var(--theme-primary);
+}
+
+.dark-mode .btn-primary {
+  background: var(--theme-primary);
+  color: white;
+  border-color: var(--theme-primary);
+}
+
+/* 链接黑暗模式 */
+.dark-mode a {
+  color: var(--theme-primary);
+}
+
+.dark-mode a:hover {
+  color: var(--theme-primary-hover);
+}
+
+/* 代码块高亮适配 */
+.dark-mode pre {
+  background: var(--theme-bg-tertiary) !important;
+  border: 1px solid var(--theme-border-light) !important;
+}
+
+.dark-mode code {
+  background: var(--theme-inline-code-bg) !important;
+  color: var(--theme-inline-code-text) !important;
+  border: 1px solid var(--theme-inline-code-border) !important;
+}
+
+/* 表格黑暗模式 */
+.dark-mode table {
+  border-color: var(--theme-table-border);
+}
+
+.dark-mode th {
+  background: var(--theme-table-header-bg);
+  border-color: var(--theme-table-border);
+  color: var(--theme-text-primary);
+}
+
+.dark-mode td {
+  border-color: var(--theme-table-border);
+  color: var(--theme-text-primary);
+}
+
+.dark-mode tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* 引用块黑暗模式 */
+.dark-mode blockquote {
+  background: var(--theme-blockquote-bg);
+  border-left-color: var(--theme-primary);
+  color: var(--theme-text-secondary);
+}
+
+/* 分割线黑暗模式 */
+.dark-mode hr {
+  border-color: var(--theme-border-light);
+}
+
+/* 列表黑暗模式 */
+.dark-mode ul,
+.dark-mode ol {
+  color: var(--theme-text-primary);
+}
+
+.dark-mode li::marker {
+  color: var(--theme-text-secondary);
+}

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ 'dark-mode': isDarkModeActive }">
     <!-- 应用头部 -->
     <AppHeader
       :show-settings-panel="showSettingsPanel"
@@ -75,7 +75,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useAppState, useElectron } from './composables/index.js'
 import { useGlobalThemeManager } from './composables/index.js'
 import { nextTick } from 'vue'
@@ -208,7 +208,10 @@ nextTick(() => {
 })
 
 // 初始化主题管理器（全局单例内部已自动调用 initialize）
-useGlobalThemeManager()
+const themeManager = useGlobalThemeManager()
+
+// 黑暗模式状态
+const isDarkModeActive = computed(() => themeManager.isDarkModeActive.value)
 
 // 导入：隐藏文件输入
 const fileInputRef = ref(null)

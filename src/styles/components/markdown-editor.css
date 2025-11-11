@@ -57,37 +57,39 @@
   height: 36px;
   border: none;
   border-radius: 10px;
-  background: #e8e8eb;
+  background: #ffffff;
   color: var(--theme-primary);
   cursor: pointer;
   transition: all 0.2s ease;
   margin: 10px 0;
   box-shadow:
-    5px 5px 10px rgba(163, 177, 198, 0.7),
-    -5px -5px 10px rgba(255, 255, 255, 0.9);
+    4px 4px 8px rgba(163, 177, 198, 0.3),
+    -4px -4px 8px rgba(255, 255, 255, 0.8);
+  /* 确保按钮内容可见性 - 增强对比度 */
+  filter: brightness(1.5) contrast(1.4) saturate(1.2);
 }
 
 .toolbar-btn:hover {
   color: var(--theme-primary-hover);
   box-shadow:
-    inset 3px 3px 6px rgba(163, 177, 198, 0.5),
-    inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+    inset 3px 3px 6px rgba(163, 177, 198, 0.4),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.7);
 }
 
 .toolbar-btn:active {
   color: var(--theme-primary-dark);
   box-shadow:
-    inset 4px 4px 8px rgba(163, 177, 198, 0.6),
-    inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+    inset 4px 4px 8px rgba(163, 177, 198, 0.5),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.8);
 }
 
 .toolbar-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  color: #9ca3af;
+  color: var(--gray-400);
   box-shadow:
-    2px 2px 4px rgba(163, 177, 198, 0.3),
-    -2px -2px 4px rgba(255, 255, 255, 0.5);
+    1px 1px 2px rgba(163, 177, 198, 0.2),
+    -1px -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .toolbar-btn svg {
@@ -168,13 +170,13 @@
 }
 
 
-/* 标题颜色 */
-.markdown-editor :deep(.cm-header-1) { color: var(--theme-primary); }
-.markdown-editor :deep(.cm-header-2) { color: var(--theme-primary-dark); }
-.markdown-editor :deep(.cm-header-3) { color: var(--theme-text-primary); }
-.markdown-editor :deep(.cm-header-4) { color: var(--theme-text-secondary); }
-.markdown-editor :deep(.cm-header-5) { color: var(--theme-text-secondary); }
-.markdown-editor :deep(.cm-header-6) { color: var(--theme-text-tertiary); }
+/* 标题颜色 - 增强可见性 */
+.markdown-editor :deep(.cm-header-1) { color: var(--theme-primary); font-weight: 700; filter: brightness(1.1) contrast(1.1); }
+.markdown-editor :deep(.cm-header-2) { color: var(--theme-primary-dark); font-weight: 700; filter: brightness(1.1) contrast(1.1); }
+.markdown-editor :deep(.cm-header-3) { color: var(--theme-text-primary); font-weight: 600; filter: brightness(1.05) contrast(1.05); }
+.markdown-editor :deep(.cm-header-4) { color: var(--theme-text-secondary); font-weight: 600; }
+.markdown-editor :deep(.cm-header-5) { color: var(--theme-text-secondary); font-weight: 500; }
+.markdown-editor :deep(.cm-header-6) { color: var(--theme-text-tertiary); font-weight: 500; }
 
 /* 其他语法高亮 */
 .markdown-editor :deep(.cm-strong) { font-weight: bold; }

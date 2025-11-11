@@ -129,3 +129,39 @@ body {
   outline: 2px solid var(--theme-primary);
   outline-offset: 2px;
 }
+
+/* ===== 黑暗模式基础样式 ===== */
+.dark-mode {
+  /* 覆盖所有基础颜色变量 */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3a3a3a;
+  --text-primary: #e6e6e6;
+  --text-secondary: #b3b3b3;
+  --text-tertiary: #888888;
+  --border-light: #404040;
+  --border-medium: #555555;
+  
+  /* 覆盖中性色系统 */
+  --gray-50: #1a1a1a;
+  --gray-100: #2d2d2d;
+  --gray-200: #3a3a3a;
+  --gray-300: #404040;
+  --gray-400: #555555;
+  --gray-500: #6b7280;
+  --gray-600: #888888;
+  --gray-700: #b3b3b3;
+  --gray-800: #d1d5db;
+  --gray-900: #e6e6e6;
+  
+  /* 背景色 */
+  background-color: #1a1a1a !important;
+  color: #e6e6e6 !important;
+}
+
+/* 确保整个页面背景都变黑 */
+.dark-mode html,
+.dark-mode body {
+  background-color: #1a1a1a !important;
+  color: #e6e6e6 !important;
+}

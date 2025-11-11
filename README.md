@@ -173,6 +173,11 @@ npm run build
 # 本地预览构建产物
 npm run preview
 
+# 打包为纯静态文件
+npm run build
+
+构建完成后，所有静态文件会输出到 `dist/` 目录中，可直接部署到任何静态文件服务器（如 Nginx、Apache、GitHub Pages 等）。
+
 # 测试（可选）
 npm run test
 npm run test:ui

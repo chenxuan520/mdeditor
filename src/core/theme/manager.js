@@ -162,11 +162,12 @@ class CSSVariableManager {
   /**
    * 应用颜色主题相关的 CSS 变量。
    * @param {Object} colorTheme - 颜色主题对象。
+   * @param {boolean} isDarkMode - 是否为黑暗模式。
    */
-  applyColorTheme(colorTheme) {
+  applyColorTheme(colorTheme, isDarkMode = false) {
     if (!colorTheme || !this._shouldUpdateTheme(colorTheme, 'colorTheme')) return;
 
-    const variables = computeThemeVariables(colorTheme);
+    const variables = computeThemeVariables(colorTheme, isDarkMode);
 
     this._debouncedSetVariables(variables);
     this._updateThemeCache(colorTheme, 'colorTheme');
@@ -287,13 +288,13 @@ class CSSVariableManager {
    * 批量应用所有主题。
    * @param {object} themes - 包含 `colorTheme`, `codeStyle`, `themeSystem`, `fontSettings` 的对象。
    */
-  applyAllThemes({ colorTheme, codeStyle, themeSystem, fontSettings }) {
+  applyAllThemes({ colorTheme, codeStyle, themeSystem, fontSettings }, isDarkMode = false) {
     // 合并所有变量后一次性写入，避免防抖合并导致此前变量被覆盖
     const mergedVariables = {};
 
     // 颜色主题变量
     if (colorTheme) {
-      Object.assign(mergedVariables, computeThemeVariables(colorTheme));
+      Object.assign(mergedVariables, computeThemeVariables(colorTheme, isDarkMode));
     }
 
     // 代码样式变量

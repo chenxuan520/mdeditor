@@ -6,6 +6,7 @@
  * - 颜色主题 (Color Theme): 如亮色、暗色、社交平台等。
  * - 代码高亮样式 (Code Style): 如 Mac、GitHub、VS Code、Terminal 等。
  * - 排版主题 (Theme System): 如默认主题、掘金等，定义整体布局和字体。
+ * - 黑暗模式 (Dark Mode): 支持明亮、黑暗、自动三种模式
  *
  * 主要功能：
  * 1.  **状态管理**: 使用 Vue 3 的 `reactive` API 创建全局响应式主题状态 `themeState`。
@@ -24,6 +25,7 @@
  */
 
 import { computed, watch, reactive } from 'vue'
+import '../../styles/themes/dark-mode.css'
 import {
   cssManager,
   ThemeStorage,
@@ -52,6 +54,18 @@ import {
 } from '../../core/theme/index.js'
 
 /**
+ * 十六进制颜色转RGB
+ */
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null
+}
+
+/**
  * 全局响应式主题状态。
  * @property {string} colorThemeId - 当前颜色主题的 ID。
  * @property {string} codeStyleId - 当前代码高亮样式的 ID。
@@ -66,6 +80,7 @@ const themeState = reactive({
   fontSize: parseInt(ThemeStorage.load(STORAGE_KEYS.FONT_SIZE, STORAGE_DEFAULTS.FONT_SIZE.toString()), 10),
   letterSpacing: parseFloat(ThemeStorage.load(STORAGE_KEYS.LETTER_SPACING, String(STORAGE_DEFAULTS.LETTER_SPACING))),
   lineHeight: parseFloat(ThemeStorage.load(STORAGE_KEYS.LINE_HEIGHT, String(STORAGE_DEFAULTS.LINE_HEIGHT))),
+  isDarkMode: ThemeStorage.load('isDarkMode', 'auto'), // 黑暗模式：'light' | 'dark' | 'auto'
   isInitialized: false,
   hasTemporaryCustomTheme: false, // 标记是否有临时自定义主题
   customThemeUpdateTrigger: 0 // 用于触发自定义主题列表的响应式更新
@@ -136,6 +151,15 @@ export function useThemeManager() {
   /** 当前字体族对象 */
   const currentFontFamily = computed(() => getFontFamily(themeState.fontFamily) || getFontFamily(defaultFontSettings.fontFamily))
 
+  /** 当前是否应该使用黑暗模式 */
+  const isDarkModeActive = computed(() => {
+    if (themeState.isDarkMode === 'auto') {
+      // 检测系统主题偏好
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+    return themeState.isDarkMode === 'dark'
+  })
+
   /** 所有可用的颜色主题列表（包含自定义主题） */
   const colorThemeList = computed(() => {
     const builtinThemes = getColorThemeList()
@@ -187,6 +211,102 @@ export function useThemeManager() {
       return true
     }
     return false
+  }
+
+  /**
+   * 设置黑暗模式
+   * @param {'light' | 'dark' | 'auto'} mode - 黑暗模式设置
+   */
+  const setDarkMode = (mode) => {
+    if (['light', 'dark', 'auto'].includes(mode)) {
+      themeState.isDarkMode = mode
+      ThemeStorage.save('isDarkMode', mode)
+      
+      // 更新CSS变量以反映黑暗模式
+      updateDarkModeCSS()
+      return true
+    }
+    return false
+  }
+
+  /**
+   * 切换黑暗模式
+   */
+  const toggleDarkMode = () => {
+    const modes = ['light', 'dark', 'auto']
+    const currentIndex = modes.indexOf(themeState.isDarkMode)
+    const nextIndex = (currentIndex + 1) % modes.length
+    setDarkMode(modes[nextIndex])
+  }
+
+  /**
+   * 更新黑暗模式CSS变量
+   */
+  const updateDarkModeCSS = () => {
+    if (!themeState.isInitialized) return
+    
+    const isDark = isDarkModeActive.value
+    const root = document.documentElement
+    const body = document.body
+    
+    if (isDark) {
+      root.classList.add('dark-mode')
+      root.classList.remove('light-mode')
+      body.classList.add('dark-mode')
+      body.classList.remove('light-mode')
+    } else {
+      root.classList.add('light-mode')
+      root.classList.remove('dark-mode')
+      body.classList.add('light-mode')
+      body.classList.remove('dark-mode')
+    }
+    
+    // 延迟执行，确保CSS类已经应用
+    setTimeout(() => {
+      // 先重新应用主题，然后再调整黑暗模式
+      updateAllCSS()
+      // 在主题应用后再调整黑暗模式颜色
+      adjustThemeForDarkMode(isDark)
+    }, 0)
+  }
+
+  /**
+   * 根据黑暗模式调整主题颜色
+   */
+  const adjustThemeForDarkMode = (isDark) => {
+    if (!isDark) return
+    
+    // 获取当前颜色主题
+    const currentTheme = currentColorTheme.value
+    if (!currentTheme) return
+    
+    // 在黑暗模式下，确保主色调有足够的对比度
+    const root = document.documentElement
+    
+    // 调整背景色和文本色
+    if (currentTheme.primary) {
+      // 确保主色调在黑暗背景下可见
+      const rgb = hexToRgb(currentTheme.primary)
+      if (rgb) {
+        const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000
+        if (brightness < 128) {
+          // 如果颜色太暗，在黑暗模式下使用更亮的版本
+          const lighterR = Math.min(255, rgb.r + 60)
+          const lighterG = Math.min(255, rgb.g + 60)
+          const lighterB = Math.min(255, rgb.b + 60)
+          
+          // 设置更亮的主色调
+          root.style.setProperty('--theme-primary', `rgb(${lighterR}, ${lighterG}, ${lighterB})`)
+          root.style.setProperty('--theme-primary-light', `rgba(${lighterR}, ${lighterG}, ${lighterB}, 0.2)`)
+          root.style.setProperty('--theme-primary-hover', `rgb(${Math.min(255, lighterR + 20)}, ${Math.min(255, lighterG + 20)}, ${Math.min(255, lighterB + 20)})`)
+          
+          // 同时调整相关颜色
+          root.style.setProperty('--theme-text-primary', '#ffffff')
+          root.style.setProperty('--theme-text-secondary', '#e6e6e6')
+          root.style.setProperty('--theme-text-tertiary', '#b3b3b3')
+        }
+      }
+    }
   }
 
   /**
@@ -399,7 +519,12 @@ export function useThemeManager() {
       codeStyle: currentCodeStyle.value,
       themeSystem: currentThemeSystem.value,
       fontSettings: currentFontSettings.value
-    })
+    }, isDarkModeActive.value)
+    
+    // 在主题应用后调整黑暗模式颜色
+    if (isDarkModeActive.value) {
+      adjustThemeForDarkMode(true)
+    }
   }
 
   /**
@@ -498,6 +623,19 @@ export function useThemeManager() {
       }
 
       themeState.isInitialized = true
+      
+      // 初始化黑暗模式
+      updateDarkModeCSS()
+      
+      // 监听系统主题变化
+      if (window.matchMedia) {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+        mediaQuery.addEventListener('change', (e) => {
+          if (themeState.isDarkMode === 'auto') {
+            updateDarkModeCSS()
+          }
+        })
+      }
     }
   }
 
@@ -523,6 +661,8 @@ export function useThemeManager() {
     currentFontFamily: computed(() => themeState.fontFamily),
     currentFontSize: computed(() => themeState.fontSize),
     isInitialized: computed(() => themeState.isInitialized),
+    isDarkMode: computed(() => themeState.isDarkMode),
+    isDarkModeActive: isDarkModeActive,
 
     // 主题状态（用于外部访问）
     themeState,
@@ -551,6 +691,8 @@ export function useThemeManager() {
         setLineHeight,
     setFontSettings,
     setThemes,
+    setDarkMode,
+    toggleDarkMode,
 
     // 重置方法
     resetColorTheme,
