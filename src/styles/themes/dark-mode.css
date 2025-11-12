@@ -557,7 +557,24 @@
 }
 
 .dark-mode .CodeMirror-selected {
-  background: var(--theme-primary-light);
+  background: rgba(100, 150, 255, 0.4) !important;
+}
+
+/* CodeMirror 6 选择文字样式 - 黑暗模式特别增强 */
+.dark-mode .cm-selectionBackground {
+  background-color: rgba(100, 150, 255, 0.5) !important;
+  opacity: 1 !important;
+}
+
+.dark-mode .cm-focused .cm-selectionBackground {
+  background-color: rgba(100, 150, 255, 0.6) !important;
+  opacity: 1 !important;
+}
+
+/* 确保选择层在黑暗模式下可见 */
+.dark-mode .cm-selectionLayer {
+  z-index: 1000 !important;
+  opacity: 1 !important;
 }
 
 /* 预览区域黑暗模式 */

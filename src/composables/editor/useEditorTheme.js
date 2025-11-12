@@ -1,7 +1,7 @@
 /**
  * @file src/composables/editor/useEditorTheme.js
  * @description 编辑器主题管理 Composable
- * 
+ *
  * 专门负责处理编辑器的主题相关逻辑
  */
 
@@ -60,6 +60,15 @@ export function useEditorTheme(theme = 'auto') {
       '.cm-line': {
         whiteSpace: 'pre-wrap',
         wordBreak: 'break-word'
+      },
+      // 基础选择层设置 - 不强制颜色，让主题决定
+      '.cm-selectionLayer': {
+        zIndex: '100',
+        opacity: '1'
+      },
+      // 确保光标层正常显示
+      '.cm-cursorLayer': {
+        zIndex: '200'
       }
     });
   };
@@ -71,13 +80,15 @@ export function useEditorTheme(theme = 'auto') {
    */
   const getEditorExtensions = (updateListener) => {
     const extensions = [
-      getEditorTheme(),
       updateListener
     ];
 
     if (currentTheme.value === 'dark') {
       extensions.push(oneDark);
     }
+
+    // 我们的自定义主题必须在 oneDark 之后添加，才能覆盖它的样式
+    extensions.push(getEditorTheme());
 
     return extensions;
   };
@@ -88,4 +99,4 @@ export function useEditorTheme(theme = 'auto') {
     getEditorTheme,
     getEditorExtensions
   };
-} 
+}
