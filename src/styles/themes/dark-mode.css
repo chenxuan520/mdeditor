@@ -165,7 +165,7 @@
 }
 
 .dark-mode .CodeMirror-selected {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(0, 100, 200, 0.7) !important; /* 更深的蓝色背景 */
 }
 
 /* CodeMirror 行号列黑暗模式 */
@@ -177,6 +177,17 @@
 
 .dark-mode .cm-gutter {
   background-color: #2d2d2d !important;
+}
+
+/* CodeMirror 6 选择文字样式 - 黑暗模式特别增强 */
+.dark-mode .cm-selectionBackground {
+  background-color: rgba(0, 100, 200, 0.7) !important; /* 更深的蓝色背景 */
+  opacity: 1 !important;
+}
+
+.dark-mode .cm-focused .cm-selectionBackground {
+  background-color: rgba(0, 100, 200, 0.8) !important; /* 焦点时更深的蓝色背景 */
+  opacity: 1 !important;
 }
 
 .dark-mode .cm-lineNumbers {
